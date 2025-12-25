@@ -22,6 +22,8 @@ def parse_args():
                         help='最大生成token数 (默认: 4096)')
     parser.add_argument('--temperature', type=float, default=0.6,
                         help='采样温度 (默认: 0.0)')
+    parser.add_argument('--tensor_parallel_size', type=int, default=1,
+                        help='Tensor并行大小，仅单GPU模式有效 (默认: 1)')
     parser.add_argument('--top_p', type=float, default=0.95,
                         help='Top-p采样 (默认: 0.95)')
     parser.add_argument('--num_samples', type=int, default=1,
