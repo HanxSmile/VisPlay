@@ -118,7 +118,7 @@ def hello():
 
     system_prompts = [item["system"] for item in data]
     questions = [item['question'] for item in data]
-    types = [item['types'] for item in data]
+    types = [item['type'] for item in data]
     image_list = [item['image'] for item in data]
 
     valid_chats = [build_prompt_and_images(imgs, sys_p, p, processor) for imgs, sys_p, p in
