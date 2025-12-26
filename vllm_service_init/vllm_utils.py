@@ -55,8 +55,12 @@ def build_prompt_and_images(
 
     # 使用 qwen_vl_utils 处理图像（会自动根据 max_pixels/min_pixels 调整）
     image_inputs, video_inputs = process_vision_info(messages)
+    results = {
+        "prompt": prompt,
+        "multi_modal_data": {"image": image_inputs}
+    }
 
-    return prompt, image_inputs
+    return results
 
 
 def base64_to_pil(b64_string):
