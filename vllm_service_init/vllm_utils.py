@@ -74,6 +74,7 @@ def base64_to_pil(b64_string):
 # ---------- Results Post-Processing (Core Refactoring & Optimization Here) ----------
 def process_single(question, type_, response):
     '''Consolidates and grades vLLM outputs for a single question, returning a result dictionary.'''
+    raw_response_list = [out.text for out in response.outputs]
     results = [task_formatter_obj(type_, out.text) for out in response.outputs]
     results = [_ for _ in results if _]
 
@@ -91,5 +92,6 @@ def process_single(question, type_, response):
         'question': question,
         'answer': list(majority_ans) if isinstance(majority_ans, tuple) else [majority_ans],
         'score': score,
-        'results': [list(_) if isinstance(_, tuple) else [_] for _ in results]
+        'results': [list(_) if isinstance(_, tuple) else [_] for _ in results],
+        'responses': raw_response_list,
     }
